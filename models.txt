@@ -1,0 +1,60 @@
+user
+
+userName string
+email string
+password string
+userId int -> pk
+
+
+cart
+
+userId int --> fk 
+productId int --> fk
+
+
+product 
+
+productId int --> pk
+productName string
+productDescription string
+price double
+category_id int --> fk 
+brand 
+weight 
+stock_quantity 
+image_url 
+expiration_date 
+is_active 
+created_at 
+updated_at 
+discount_price 
+special_offer 
+unit_of_measure 
+
+category 
+
+categoryId int --> pk
+categoryName string 
+
+
+order 
+orderId int --> pk
+usreId
+orderDate
+status
+amount
+payment status
+payment mode
+address
+delivery date
+discount
+coupenCode
+tax-amount
+
+
+order_items
+order_id
+productId
+quantity
+priceOrderedAt
+totalPrice  

@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  ts-node-app:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: ts-node-app-container
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=mysql
+      - DB_USER=root
+      - DB_PASSWORD=root
+      - DB_NAME=ecommerce 
+    depends_on:
+      - mysql
+    networks:
+      - app-network
+
+  mysql:
+    image: mysql:8.0
+    container_name: mysql-container
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=ecommerce
+      - MYSQL_USER=myuser
+      - MYSQL_PASSWORD=myuserpassword
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql 
+    networks:
+      - app-network
+
+volumes:
+  mysql_data: 
+
+networks:
+  app-network:
+    driver: bridge
